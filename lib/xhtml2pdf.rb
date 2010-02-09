@@ -35,7 +35,7 @@ module ActsAsFlyingSaucer
           class_path << "#{options[:classpath_separator]}#{jar}"
         end
 
-        command = "#{options[:java_bin]} -cp #{class_path} Xhtml2Pdf #{options[:input_file]} #{options[:output_file]}"
+        command = "#{options[:java_bin]} -Xmx512m -Djava.awt.headless=true -cp #{class_path} Xhtml2Pdf #{options[:input_file]} #{options[:output_file]}"
         system(command)
       end
     end
