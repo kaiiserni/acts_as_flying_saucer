@@ -48,7 +48,7 @@ module ActsAsFlyingSaucer
         logger.debug("html file: #{input_file}")
       
         output_file = (options.has_key?(:pdf_file)) ? options[:pdf_file] : "#{tmp_dir}/#{html_digest}.pdf"
-        password = (options.has_key?(:password)) ? options[:password] : ""  
+        password = (options.has_key?(:password)) ? options[:password] : " "  
         op=output_file.split(".")
         op.pop
         op  << "a"
@@ -62,13 +62,13 @@ module ActsAsFlyingSaucer
           })
 
         ActsAsFlyingSaucer::Xhtml2Pdf.write_pdf(generate_options)
-        unless  password.empty?
+        unless  password != " "
           ActsAsFlyingSaucer::Xhtml2Pdf.encrypt_pdf(options,output_file_name,password)
         end
         # restoring the host
         ActionController::Base.asset_host = host
         
-        output_file = op
+        #output_file = op
         # sending the file to the client
         if options[:send_file]
         
