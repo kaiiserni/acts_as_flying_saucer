@@ -58,7 +58,10 @@ Examples
     # renders the 'app/views/foo.html.erb' template, saves the pdf in the temp path
     # and sends it to the browser with the name 'bar.pdf'
     render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' }
-  
+    
+    # To send file with password protection
+       render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' },:password=>"xxx"
+  Now pdf is password protected
   
 Easy as pie
 
@@ -99,6 +102,7 @@ These are the default settings which can be overwritten in your enviroment confi
       :classpath_separator => ':',  # classpath separator. unixes system use ':' and windows ';'
       :tmp_path => "/tmp",          # path where temporary files will be stored
     }
+    
 
 
 
