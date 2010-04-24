@@ -32,7 +32,7 @@ It accepts the same options as ActionController::Base#render plus the following 
   
 :send\_file - sends the generated pdf file to the browser. It's the hash the ActionController::Streaming#send\_file method will receive.  
              
-            
+:password  attach password for generated pdf            
           
     class FooController < ActionController::Base
       acts_as_flying_saucer
