@@ -41,7 +41,10 @@ It accepts the same options as ActionController::Base#render plus the following 
         render_pdf :template => 'foo/pdf_template'
       end
     end
-   
+
+:debug_html - (boolean expected) generates html output to the browser for debugging purposes
+
+You can make acts_as_flying_saucer dump html input into pdfs as a StringIO object as well now to for instance push it over to Paperclip for db storage purposes, background processes, ... (see examples)
 
   
 Examples
@@ -65,7 +68,13 @@ Examples
 
     # To debug html output to your browser
     render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' }, :debug_html => true
-  
+
+    # To generate pdf StringIO output from html input, in your controller:
+    html = render_to_string(:template=>"x/bar.erb")
+    # and in your other class (for instance in a background task):
+    include ActsAsFlyingSaucer
+    foo=  Xhtml2Pdf.write_pdf(:io_out => true, :html => html, :file_name => "xyz.pdf")
+
 Easy as pie
 
 While converting the xhtml document into a pdf, the css stylesheets and images should be referenced with absolute URLs(either local or remote) or Flying Saucer will not be able to access them. 
