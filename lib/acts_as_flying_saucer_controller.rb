@@ -39,7 +39,13 @@ module ActsAsFlyingSaucer
         self.pdf_mode = :create
         html = render_to_string options
         self.pdf_mode = nil
-           
+
+        if options[:debug_html]
+          ActionController::Base.asset_host = host
+          response.header["Content-Type"] = "text/html; charset=utf-8"
+          render :text => html and return
+        end
+
         # saving the file
         tmp_dir = ActsAsFlyingSaucer::Config.options[:tmp_path]
         html_digest = Digest::MD5.hexdigest(html)

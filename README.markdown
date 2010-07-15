@@ -61,7 +61,10 @@ Examples
     
     # To send file with password protection
        render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' },:password=>"xxx"
-  Now pdf is password protected
+    Now pdf is password protected
+
+    # To debug html output to your browser
+    render_pdf :template => 'foo', :send_file => { :filename => 'bar.pdf' }, :debug_html => true
   
 Easy as pie
 
